@@ -12,7 +12,7 @@ get '/style.css' do
 end
 
 get '/' do
-  @comments = Comments.order_by(:posted_date.desc)
+  @comments = Comments.all(:order => [:posted_date.desc])
   haml :index
 end
 
