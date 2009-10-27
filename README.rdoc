@@ -1,18 +1,26 @@
-= SinatBBS
+= SinatBBS on GAE/J
 
-Sinatraで作った掲示板アプリケーションです。
+Sinatraで作った掲示板アプリケーション「SinatBBS」をGoogle App Engine for Javaで動くように改造したものです。
 
-== 依存ライブラリ
+== 動作に必要なもの
 
-* Sinatra
-* Haml
-* Sequel
-* sqlite3-ruby
+libディレクトリを作成して、次のファイルを設置してください。
+
+* appengine-api-1.0-sdk-1.2.6.jar
+* jruby-core-1.4.0RC1.jar
+* ruby-stdlib-jruby-1.4.0RC1.jar
+* jruby-rack-0.9.5.jar
 
 == 起動方法
 
-  $ sudo gem install sinatra haml sequel sqlite3-ruby
-  $ ruby start.rb
+  $ dev_appserver.sh .
 
-http://localhost:4567/
+http://localhost:8080/
+
+== Google App Engine にデプロイする方法
+
+「appengine-web.xml」の「application」と「version」を適切に設定して、
+
+  $ appcfg.sh update .
+
 
