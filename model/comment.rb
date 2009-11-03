@@ -5,9 +5,16 @@ require 'dm-aggregates'
 require 'dm-types'
 require 'dm-datastore-adapter/datastore-adapter'
 
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/../vendor/dm-pagination'
+
+require 'dm-pagination'
+require 'dm-pagination/paginatable'
+
 DataMapper.setup(:datastore,
                  :adapter => :datastore,
                  :database => 'comments')
+
+DataMapper::Model.append_extensions DmPagination::Paginatable
 
 class Comments
   include DataMapper::Resource
