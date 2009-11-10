@@ -47,3 +47,12 @@ put '/comment' do
   })
   redirect '/'
 end
+
+get '/comment/:id' do
+  @comment = Comments.get(params[:id])
+  haml :comment
+end
+
+get '/comment/:id/' do
+  redirect "/comment/#{params[:id]}", 301
+end
