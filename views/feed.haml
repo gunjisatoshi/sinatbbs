@@ -1,0 +1,20 @@
+!!! XML
+
+%feed{:xmlns=>"http://www.w3.org/2005/Atom"}
+  %title SinatBBS
+  %id http://localhost:8080/feed
+  %updated= h @comments.first.posted_date if @comments.any?
+  %author
+    %name Your Name
+  - @comments.each do |comment|
+    %entry
+      %title= h comment.title
+      %link{:rel=>"alternate", :href=>"http://localhost:8080/comment/#{comment.id}"}
+
+      %id== http://localhost:8080/comment/#{comment.id}
+      %published= h comment.posted_date
+      %updated= h comment.posted_date
+      %author
+        %name= h comment.name
+      %summary{:type=>"html"}= comment.formatted_message
+      %content{:type=>"html"}= comment.formatted_message
