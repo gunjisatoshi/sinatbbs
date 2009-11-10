@@ -56,3 +56,8 @@ end
 get '/comment/:id/' do
   redirect "/comment/#{params[:id]}", 301
 end
+
+get '/feed' do
+  @comments = Comments.all(:limit => 5, :order => [:posted_date.desc])
+  haml :feed, :layout => false
+end
